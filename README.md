@@ -13,6 +13,10 @@ webpack + mockjs + babel的开发模板
 1. npm run build
 2. 查看dist中文件
 
+#### 文件结构
+src目录下每个.html的入口文件是src/js/*.entry.js文件  
+每个*.entry.js文件将生成一个 *.js文件，公共模块打包成vendor.js
+
 #### Mock
 Mock方案使用[Mock.js](http://mockjs.com/)  
 mock文件在mock文件夹内，接口映射文件在src/js/urlmap.js
