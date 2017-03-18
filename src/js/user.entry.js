@@ -1,3 +1,9 @@
-const arr = [1, 2, 3, 4, 5, 6];
+const urlmap = require('./urlmap');
 
-export default arr;
+$.ajax({
+    url: urlmap['list'],
+    dataType: 'json',
+    success: data => {
+        console.log(data);
+    }
+})

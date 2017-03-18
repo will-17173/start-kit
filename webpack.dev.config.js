@@ -1,5 +1,6 @@
 const path = require('path');
 const glob = require('glob');
+const webpack = require('webpack');
 const entries = glob.sync(path.join(__dirname, '/src/**/*.entry.js'));
 var entry = {};
 
@@ -15,18 +16,18 @@ module.exports = {
     entry: entry,
     output: {
         filename: '[name].js',
-        publicPath: 'dist',
+        publicPath: './dist',
         path: path.resolve(__dirname, './dist')
     },
     externals: {
         'jquery': 'jQuery'
     },
-    devServer: {
-        contentBase: __dirname + '/src',
-        port: 3000
-    },
+    // devServer: {
+    //     contentBase: __dirname + '/src',
+    //     port: 3000
+    // },
     plugins: [
-
+        new webpack.HotModuleReplacementPlugin()
     ],
     module: {
         rules: [{
