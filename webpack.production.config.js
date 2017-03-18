@@ -8,7 +8,7 @@ var entry = {};
 entries.forEach(function(val, i) {
     let name = path.basename(val, '.entry.js');
     entry[name] = entries[i];
-})
+});
 
 module.exports = {
     entry: entry,
@@ -34,7 +34,10 @@ module.exports = {
             name: 'vendor',
             filename: 'vendor.js'
         }),
-        new webpack.BannerPlugin({ banner: "Date: " + moment().format('YYYY-MM-DD hh:mm:ss') + ", Author: Will.H", entryOnly: true }),
+        new webpack.BannerPlugin({
+            banner: "Date: " + moment().format('YYYY-MM-DD hh:mm:ss') + ", Author: Will.H",
+            entryOnly: true
+        })
     ],
     module: {
         rules: [{
@@ -56,4 +59,4 @@ module.exports = {
         ]
     }
 
-}
+};

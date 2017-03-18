@@ -1,5 +1,4 @@
 const path = require('path');
-const webpack = require('webpack');
 const glob = require('glob');
 const entries = glob.sync(path.join(__dirname, '/src/**/*.entry.js'));
 var entry = {};
@@ -7,7 +6,7 @@ var entry = {};
 entries.forEach((val, i) => {
     let name = path.basename(val, '.entry.js');
     entry[name] = entries[i];
-})
+});
 
 
 module.exports = {
@@ -49,4 +48,4 @@ module.exports = {
         ]
     }
 
-}
+};
