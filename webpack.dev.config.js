@@ -2,39 +2,32 @@ const path = require('path');
 const webpack = require('webpack');
 const glob = require('glob');
 const entries = glob.sync(path.join(__dirname, '/src/**/*.entry.js'));
-const moment = require('moment');
 var entry = {};
 
-entries.forEach(function(val, i) {
+entries.forEach((val, i) => {
     let name = path.basename(val, '.entry.js');
     entry[name] = entries[i];
 })
 
+
 module.exports = {
+    context: __dirname + '/src',
+    devtool: 'source-map',
     entry: entry,
     output: {
         filename: '[name].js',
-        path: './dist'
+        publicPath: 'dist',
+        path: path.resolve(__dirname, './dist')
     },
     externals: {
         'jquery': 'jQuery'
     },
+    devServer: {
+        contentBase: __dirname + '/src',
+        port: 3000
+    },
     plugins: [
-        new webpack.optimize.UglifyJsPlugin({
-            compressor: {
-                warnings: false
-            },
-            output: {
-                comments: false,
-                ascii_only: true
-            }
-        }),
 
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'vendor',
-            filename: 'vendor.js'
-        }),
-        new webpack.BannerPlugin({ banner: "Date: " + moment().format('YYYY-MM-DD hh:mm:ss') + ", Author: Will.H", entryOnly: true }),
     ],
     module: {
         rules: [{
