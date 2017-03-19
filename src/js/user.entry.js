@@ -6,4 +6,4 @@ $.ajax({
     success: data => {
         console.log(data);
     }
-})
+});
